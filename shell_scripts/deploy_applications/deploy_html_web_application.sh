@@ -25,7 +25,7 @@ echo "#########################################################"
 # Sub Task 2 : Install Apache web server
 echo "Installing Apache server"
 sudo apt-get update
-sudo apt install apache2
+sudo apt install apache2 -y
 sudo service apache2 start
 echo "Checking the Status of Apache Server"
 echo "###################################################################"
