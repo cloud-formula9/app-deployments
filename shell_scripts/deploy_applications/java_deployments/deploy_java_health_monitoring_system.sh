@@ -10,6 +10,7 @@ cd ../../installation_scripts
 sh ./install_java.sh
 echo "Installed Java  17 successfully"
 echo "Running Jar File"
+cd ~/java-springboot-system-health-monitoring/build/libs
 java -jar java-app-0.0.1-SNAPSHOT.jar
 echo "Jar file running successfully"
 
