@@ -1,7 +1,7 @@
 # Step 1: Copy Jar file from Local Machine to EC2
-echo "Coping Jar file from Local Machine to EC2"
-cd ~/Downloads/
-scp -i "infinity-key.pem" java-app-0.0.1-SNAPSHOT.jar ubuntu@ec2-3-111-147-46.ap-south-1.compute.amazonaws.com:/home/ubuntu
+cd ~/java-springboot-system-health-monitoring
+echo "Generating build jar file"
+./gradlew clean build
 
 # Step 2: Install java setup & Run Jar File
 echo "Installing java setup"
