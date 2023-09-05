@@ -1,6 +1,6 @@
 ---
 - name: Installing Apache Server and Check Status # Name of Playbook
-  hosts: localhost # Target host on which this playbook needs to be executed
+  hosts: servers # Target host on which this playbook needs to be executed
   become: yes # Give root access for the host on target machine
   tasks:
     - name: Installing Apache Server
