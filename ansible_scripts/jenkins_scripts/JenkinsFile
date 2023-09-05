@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Codebase') {
+            steps {
+                echo 'Cloning Codebase from Github'
+                git branch: 'main', url: 'https://github.com/infinitymasters/app-deployments.git'
+            }
+        }
+        stage('Install Apache Server') {
+            steps {
+                echo 'Installing Apache Server'
+                echo 'Checking Current Directory'
+                sh 'pwd'
+                sh 'ls'
+                dir('/var/lib/jenkins/workspace/web-deployments/ansible_scripts/installation _scripts') {
+                    echo 'Running Ansible Script for Apache Installation'
+                    sh 'ansible-playbook apache_installation.yaml'
+                }
+                echo 'Apache Installed Successfully'
+            }
+        }
+        stage('Deploy HTML Web Application') {
+            steps {
+                echo 'Deploying HTML application'
+                echo 'Checking Current Directory'
+                sh 'pwd'
+                sh 'ls'
+                dir('/var/lib/jenkins/workspace/web-deployments/ansible_scripts/installation _scripts') {
+                    echo 'Running Ansible Script for Apache Installation'
+                    sh 'sh ./deploy_html_web_application.sh'
+                }
+                echo 'Application Deployed Successfully'
+            }
+        }
+    }
+}

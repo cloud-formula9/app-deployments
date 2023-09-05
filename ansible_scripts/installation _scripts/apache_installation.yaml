@@ -4,7 +4,7 @@
   become: yes # Give root access for the host on target machine
   tasks:
     - name: Installing Apache Server
-      ansible.builtin.dnf:
+      ansible.builtin.dnf5:
         name: httpd
         state: present
         # present --> Current version of apache is installed & auto-upgrade is disabled...
