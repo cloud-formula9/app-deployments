@@ -1,0 +1,17 @@
+---
+- name: Installing Apache Server and Check Status # Name of Playbook
+  hosts: localhost # Target host on which this playbook needs to be executed
+  become: yes # Give root access for the host on target machine
+  tasks:
+    - name: Installing Apache Server
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+        # present --> Current version of apache is installed & auto-upgrade is disabled...
+        # latest ---> Latest versions of apache is installed as auto-upgrade feature is enabled
+        # absent --> Uninstall current software / package from machine
+
+    - name: Starting Apache Server
+      ansible.builtin.service:
+        name: httpd
+        state: started
