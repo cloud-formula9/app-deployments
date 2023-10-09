@@ -1,0 +1,29 @@
+# depolyment verions --> v1.0, v2.0.....
+apiVersion: apps/v1
+# kind --> type of object --> pod / Deployment / service
+kind: Deployment
+# Information deployment  --> In this case, Deployment name
+metadata:
+  name: nginx-deployment
+#  tags for deployment
+  labels:
+    app: nginx
+#    Spec --> Specifications --> Configuration for deployment
+spec:
+# Creates 3 pods
+  replicas: 3
+#  Deploy where matches happen
+  selector:
+    matchLabels:
+      app: nginx
+#      Pod Configuration starts from here
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
