@@ -1,0 +1,39 @@
+# Defines Pod version
+apiVersion: v1
+# Defines k8s object
+kind: Pod
+metadata:
+#  Name of the pod
+  name: nginx
+  labels:
+    app.kubernetes.io/name: proxy
+#    Configuration of Pod & Container
+spec:
+  containers:
+#  Name of the container
+    - name: nginx
+#      Name of the image to pull from docker hub
+      image: nginx:stable
+#      Ports for container running in pod
+      ports:
+        - containerPort: 80
+          name: http-web-svc
+
+---
+# Defines Service version
+apiVersion: v1
+# Defines k8s object
+kind: Service
+# Name fo the service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app.kubernetes.io/name: proxy
+  ports:
+    - name: name-of-service-port
+#      Service port
+      protocol: TCP
+      port: 80
+#      Redirection port
+      targetPort: http-web-svc
